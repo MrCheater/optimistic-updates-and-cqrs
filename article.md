@@ -20,7 +20,7 @@ Let's take a look at a simple React + Redux example :
 
 #### Example "Optimistic calculation of the next hash"
 
-https://codepen.io/MrCheater/pen/KZreRo
+Live Demo: https://codepen.io/MrCheater/pen/KZreRo
 
 Step-by-step instruction:
 
