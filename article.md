@@ -18,7 +18,7 @@ In case of a command failure, the previous actions will be compensated and the a
 
 Let's take a look at a simple React + Redux example :
 
-#### Optimistic calculation of the next hash
+#### Example "Optimistic calculation of the next hash"
 
 https://codepen.io/MrCheater/pen/KZreRo
 
