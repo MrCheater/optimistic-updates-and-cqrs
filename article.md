@@ -4,7 +4,7 @@ Let’s talk today about optimistic UIs and CQRS.
 
 Command query responsibility segregation (CQRS) uses separate Query and Command objects to retrieve and modify data, respectively.
 
-One of its evangelist Greg Young is strongly encouraging this approach, and gives some really cool articles and interviews around this [http://cqrs.nu/Faq](http://cqrs.nu/Faq).
+One of its evangelist Greg Young is strongly encouraging this approach, and gives some really cool articles and interviews around this [http://cqrs.nu](http://cqrs.nu).
 
  ![CQRS Pattern](img/cqsr_pattern.png) 
 
@@ -12,18 +12,34 @@ Optimistic UIs don’t wait for an operation to finish to update to the final st
 
 This is especially true when on mobile connections.
 
-One solution to this problem is to perform API calls in an optimistic way: once an action requiring API interaction is triggered, we assume a positive response from the server and we dispatch the expected results before the actual API response is received. In case of an API failure (e.g. server errors or timeouts), the previously dispatched results will be reverted and the application state will be rolled-back. By doing this, the application will become more responsive and only in case of failure the user will be presented with an error and its action will be reverted.
+Once a command is sent, we emulate a positive response from the server and we dispatch the expected results before the actual API response is received. 
+
+In case of a command failure, the previous actions will be compensated and the application state will be rolled-back. By doing this, the application will become more responsive and only in case of failure the user will be presented with an error and its action will be reverted.
 
 Let's take a look at a simple React + Redux example :
 
+#### Optimistic calculation of the next hash
+
+https://codepen.io/MrCheater/pen/KZreRo
+
 Step-by-step instruction:
 
-* Dispatch optimistic action
+* Dispatch an optimistic action
 * Send a command and waiting for real action .
 * If the command failed, then stop waiting for a real action and dispatch an optimistic rollback action.
 * When a real action is received, dispatch an optimistic rollback action and apply the real action.
 
-#### Optimistic calculation of the next hash
+#### Optimistic Update (Success)
+
+| ![Optimistic Success Demo](img/optimistic-success.gif) | ![Optimistic Success Redux](img/optimistic-success-redux.png) |
+|---|---|
+
+#### Optimistic Update (Failure)
+
+| ![Optimistic Failure](img/optimistic-failure.gif) | ![Optimistic Failure Redux](img/optimistic-failure-redux.png) |
+|---|---|
+
+#### Optimistic Redux Middleware
 ```js
 const optimisticCalculateNextHashMiddleware = (store) => {
     const tempHashes = {};
@@ -65,9 +81,6 @@ const optimisticCalculateNextHashMiddleware = (store) => {
                     );             
                 break;
             }
-            case SEND_COMMAND_UPDATE_HASH_SUCCESS: {
-                break;
-            }
             case SEND_COMMAND_UPDATE_HASH_FAILURE: {
                 const { aggregateId } = action;
                 
@@ -102,20 +115,6 @@ const optimisticCalculateNextHashMiddleware = (store) => {
     }
 }
 ```
-
-
-### Live Demo 
-https://codepen.io/MrCheater/pen/KZreRo
-
-#### Optimistic Update (Success)
-
-| ![Optimistic Success Demo](img/optimistic-success.gif) | ![Optimistic Success Redux](img/optimistic-success-redux.png) |
-|---|---|
-
-#### Optimistic Update (Failure)
-
-| ![Optimistic Failure](img/optimistic-failure.gif) | ![Optimistic Failure Redux](img/optimistic-failure-redux.png) |
-|---|---|
 
 ## Conclusion
 
