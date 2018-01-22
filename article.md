@@ -4,7 +4,7 @@ Let’s talk today about optimistic UIs and CQRS.
 
 Command query responsibility segregation (CQRS) uses separate Query and Command objects to retrieve and modify data, respectively.
 
-One of its evangelist Greg Young is strongly encouraging this approach, and gives some really cool articles and interviews around this [http://cqrs.nu](http://cqrs.nu).
+Greg Young, one of the masterminds behind CQRS, is strongly encouraging this approach and gives some really cool articles and interviews around this [http://cqrs.nu](http://cqrs.nu).
 
  ![CQRS Pattern](img/cqsr_pattern.png) 
 
