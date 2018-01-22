@@ -8,7 +8,7 @@ Greg Young, one of the masterminds behind CQRS, is strongly encouraging this app
 
  ![CQRS Pattern](img/cqsr_pattern.png) 
 
-Optimistic UIs don’t wait for an operation to finish to update to the final state. They immediately switch to the final state, showing fake data for the time while the real operation is still in-progress.
+Optimistic UIs don’t wait for an operation to finish to update to the final state. They immediately switch to the final state, showing estimated data for the time while the real operation is still in-progress.
 
 This is especially true when on mobile connections.
 
