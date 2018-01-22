@@ -16,7 +16,7 @@ Once a command is sent, we emulate a positive response from the server and we di
 
 In case of a command failure, the previous actions will be compensated and the application state will be rolled-back. By doing this, the application will become more responsive and only in case of failure the user will be presented with an error and its action will be reverted.
 
-Let's take a look at a simple React + Redux example :
+Let's take a look at a simple React + Redux example:
 
 #### Example "Optimistic calculation of the next hash"
 
