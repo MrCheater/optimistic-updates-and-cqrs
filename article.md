@@ -24,8 +24,8 @@ Live Demo: https://codepen.io/MrCheater/pen/KZreRo
 
 Step-by-step instruction:
 
-* Dispatch an optimistic action
-* Send a command and waiting for real action .
+* Dispatch an optimistic action.
+* Send a command and waiting for real action.
 * If the command failed, then stop waiting for a real action and dispatch an optimistic rollback action.
 * When a real action is received, dispatch an optimistic rollback action and apply the real action.
 
@@ -118,5 +118,7 @@ const optimisticCalculateNextHashMiddleware = (store) => {
 
 ## Conclusion
 
-Optimistic UIs can make your app more fluent, straightforward and enjoyable for a user.
-
+Optimistic updates can make your app more fluent, straightforward and enjoyable for a user.
+But you should be careful with them.
+In some cases, they can be annoying, can lead to data loss if the user skips the error message.
+So, keep in mind all the implications and use them responsibly!
